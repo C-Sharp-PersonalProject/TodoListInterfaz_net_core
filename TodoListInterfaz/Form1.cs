@@ -1,3 +1,4 @@
+using System.Windows.Forms;
 using TodoListInterfaz.clases;
 
 namespace TodoListInterfaz
@@ -25,22 +26,32 @@ namespace TodoListInterfaz
             // Obtener la descripción de la tarea del TextBox
             string descripcion = txtDescripcionTarea.Text;
 
-            // Verificar que la descripción no esté vacía
+            // Asegurarse que la descripción no esté vacía
             if (!string.IsNullOrWhiteSpace(descripcion))
             {
                 // Crear una nueva instancia de Tarea
                 Tarea nuevaTarea = new Tarea(descripcion);
 
-                // Añadir la tarea a la lista
+                // Añadir la tarea a la lista del objeto
                 tareas.Add(nuevaTarea);
 
-                // Añadir la descripción de la tarea al ListBox
-                listBoxTareas.Items.Add(nuevaTarea.Descripcion);
+                // Crear un nuevo Label para la tarea
+                Label lblTarea = new Label();
+                lblTarea.Text = nuevaTarea.Descripcion;
+                lblTarea.AutoSize = true;
+
+                // Añadir el Label al FlowLayoutPanel
+                flowLayoutPanel1.Controls.Add(lblTarea);
 
                 // Limpiar el TextBox
                 txtDescripcionTarea.Clear();
+
             }
         }
 
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

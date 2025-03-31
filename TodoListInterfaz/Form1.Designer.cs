@@ -30,8 +30,8 @@
         {
             txtDescripcionTarea = new TextBox();
             label1 = new Label();
-            listBoxTareas = new ListView();
             button1 = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // txtDescripcionTarea
@@ -51,15 +51,6 @@
             label1.TabIndex = 1;
             label1.Text = "Nombre de la Tarea";
             // 
-            // listBoxTareas
-            // 
-            listBoxTareas.Location = new Point(404, 60);
-            listBoxTareas.Name = "listBoxTareas";
-            listBoxTareas.Size = new Size(367, 350);
-            listBoxTareas.TabIndex = 2;
-            listBoxTareas.UseCompatibleStateImageBehavior = false;
-            listBoxTareas.SelectedIndexChanged += listView1_SelectedIndexChanged;
-            // 
             // button1
             // 
             button1.Location = new Point(24, 137);
@@ -70,13 +61,23 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += btnAñadirTarea_Click;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel1.Location = new Point(321, 30);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(149, 387);
+            flowLayoutPanel1.TabIndex = 4;
+            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(788, 429);
+            ClientSize = new Size(495, 429);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(button1);
-            Controls.Add(listBoxTareas);
             Controls.Add(label1);
             Controls.Add(txtDescripcionTarea);
             Name = "Form1";
@@ -89,7 +90,7 @@
 
         private TextBox txtDescripcionTarea;
         private Label label1;
-        private ListView listBoxTareas;
         private Button button1;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
