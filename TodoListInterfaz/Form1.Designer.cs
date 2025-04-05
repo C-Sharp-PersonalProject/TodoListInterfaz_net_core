@@ -64,10 +64,11 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Dock = DockStyle.Right;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(321, 30);
+            flowLayoutPanel1.Location = new Point(285, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(149, 387);
+            flowLayoutPanel1.Size = new Size(149, 429);
             flowLayoutPanel1.TabIndex = 4;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
@@ -75,7 +76,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(495, 429);
+            ClientSize = new Size(434, 429);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(button1);
             Controls.Add(label1);
