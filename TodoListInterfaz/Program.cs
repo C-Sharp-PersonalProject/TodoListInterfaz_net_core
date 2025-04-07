@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using TodoListInterfaz.clases;
+using MySql.Data.MySqlClient;
 
 namespace TodoListInterfaz
 {
@@ -11,34 +12,31 @@ namespace TodoListInterfaz
         [STAThread]
         static void Main()
         {
-            var host = CreateHostBuilder(args).Build();
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
+            string connectionString = "Server=localhost;Database=mydatabase;Uid=myuser;Pwd=mypassword;";
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
                 try
                 {
-                    var context = services.GetRequiredService<AppDbContext>();
-                    // Aquí puedes agregar lógica para aplicar migraciones si es necesario
+                    Console.WriteLine("Connecting to MySQL...");
+                    conn.Open();
+
+                    string sql = "SELECT * FROM mydatabase.tareas";
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            Console.WriteLine("Hay conexion por que si no saltaria el error ejejejej");
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while seeding the database.");
+                    Console.WriteLine(ex.ToString());
                 }
-            }
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
-            {
-                services.AddDbContext<AppDbContext>(options =>
-                    options.UseMySql(hostContext.Configuration.GetConnectionString("DefaultConnection"),
-                    new MariaDbServerVersion(new Version(10, 5, 9))));
-            });
     }
 }
